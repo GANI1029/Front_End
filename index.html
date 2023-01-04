@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intelligent BarCode Detection Demo</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/fontawesome.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/main.css')}}">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #7952B3;">
+        <div class="container-fluid">
+          <div class="navbar-brand navbar-brand-centered">Intelligent BarCode Detection Demo</div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12 border border-dark rounded mt-4 p-4">
+                <h3 class="text-center">Select an image of a Monroney Label</h3>
+                <form method="post" id="imgForm">
+                    <input type="file" name="image" id="image" class="form-control mb-3" accept=".png,.jpeg,.jpg" required>
+                    <center>
+                        <button class="btn btn-primary" action="/scan" onclick="scan(event,this)">Scan</button>
+                        <button class="btn btn-primary" action="/detect" onclick="detect(event,this)">Crop</button>
+                        <!-- <button class="btn btn-primary" action="/annotate" onclick="annotate(event,this)">Annotate</button> --> -->
+                    </center>
+                </form>
+            </div>
+            <div class="col-12 mt-2">
+                <div id="display-img">
+                    
+                </div>
+            </div>
+            <!-- <div class="col-12 mt-2">
+                <div id="value">
+                    
+                </div>
+            </div> -->
+            <div class="col-12 mt-2">
+                <div id="prediction">
+                    
+                </div>
+            </div>
+            <!-- <div>
+                <table class="table" style="display:none" id="table_name">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Part Name</th>
+                        <th scope="col">Damage Name</th>
+                        <th scope="col">Damage Dims</th>
+                        <th scope="col">Car Dims</th>
+                      </tr>
+                    </thead>
+                    <tbody id="table_body">
+                    </tbody>
+                </table>
+                  
+            </div> -->
+        </div>
+    </div>
+    
+    <!-- Scripts -->
+    <script src="{{url_for('static',filename='js/jquery.min.js')}}"></script>
+    <script src="{{url_for('static',filename='js/bootstrap.min.js')}}"></script>
+    <script src="{{url_for('static',filename='js/fontawesome.min.js')}}"></script>
+    <script src="{{url_for('static',filename='js/main.js')}}"></script>
+</body>
+</html>
