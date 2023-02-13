@@ -163,3 +163,29 @@ message = {
     "markdown": text,
     "attachments": [{"contentType": "application/vnd
 
+###
+from flask import Flask, request
+import json
+
+app = Flask(__name__)
+
+@app.route('/submit', methods=['POST'])
+def submit_card():
+    # Extract the JSON payload from the request body
+    payload = request.get_json()
+
+    # Extract the submitted form data from the payload
+    ami_id = payload["data"]["ami_id"]
+    bio_screening_date = payload["data"]["bio_screening_date"]
+    incident_number = payload["data"]["incident_number"]
+    incident_type = payload["data"]["incident_type"]
+
+    # You can now use the extracted data as needed
+    # ...
+
+    return "Success"
+
+if __name__ == '__main__':
+    app.run()
+
+
