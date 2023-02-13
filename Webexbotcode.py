@@ -55,3 +55,111 @@ while True:
             if message.personId != me.id:
                 # Send the message with the card
                 api.messages.create(roomId=message.roomId, markdown=message.markdown, attachments=message.attachments)
+
+
+
+###import os
+import requests
+import json
+from adaptivecard import AdaptiveCard, ActionSubmit, ColumnSet, Column, Container, FormField, TextInput, DateInput, ChoiceSetInput
+
+# Define the adaptive card
+card = AdaptiveCard(
+    type="AdaptiveCard",
+    version="1.0",
+    body=[
+        Container(
+            type="Container",
+            items=[
+                ColumnSet(
+                    type="ColumnSet",
+                    columns=[
+                        Column(
+                            type="Column",
+                            items=[
+                                FormField(
+                                    type="TextInput",
+                                    id="ami_id",
+                                    title="AMI ID",
+                                ),
+                                FormField(
+                                    type="DateInput",
+                                    id="bio_screening_date",
+                                    title="BIO Screening Date",
+                                ),
+                                FormField(
+                                    type="TextInput",
+                                    id="incident_number",
+                                    title="Incident Number",
+                                ),
+                                FormField(
+                                    type="ChoiceSetInput",
+                                    id="incident_type",
+                                    title="Select Incident Type",
+                                    style="expanded",
+                                    is_multi_select=True,
+                                    choices=[
+                                        {
+                                            "title": "Option 1",
+                                            "value": "option_1"
+                                        },
+                                        {
+                                            "title": "Option 2",
+                                            "value": "option_2"
+                                        },
+                                        {
+                                            "title": "Option 3",
+                                            "value": "option_3"
+                                        },
+                                        {
+                                            "title": "Option 4",
+                                            "value": "option_4"
+                                        },
+                                        {
+                                            "title": "Option 5",
+                                            "value": "option_5"
+                                        },
+                                        {
+                                            "title": "Option 6",
+                                            "value": "option_6"
+                                        },
+                                        {
+                                            "title": "Option 7",
+                                            "value": "option_7"
+                                        },
+                                        {
+                                            "title": "Option 8",
+                                            "value": "option_8"
+                                        },
+                                        {
+                                            "title": "Option 9",
+                                            "value": "option_9"
+                                        }
+                                    ]
+                                ),
+                            ],
+                            width="auto",
+                        ),
+                    ],
+                ),
+            ],
+        ),
+    ],
+    actions=[
+        ActionSubmit(
+            type="Action.Submit",
+            title="Submit",
+            data={"endpoint": "your_endpoint_url"},
+        ),
+    ],
+)
+
+# Get the JSON representation of the card
+card_json = card.to_json(transparent=True)
+
+# Define the message to be sent to the chat room
+text = "Please fill out the form below"
+message = {
+    "markdown": text,
+    "attachments": [{"contentType": "application/vnd
+
