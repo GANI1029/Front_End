@@ -188,4 +188,55 @@ def submit_card():
 if __name__ == '__main__':
     app.run()
 
+##################################
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+from msedge.selenium_tools import EdgeService, EdgeOptions
+
+# Create the EdgeOptions object and set the path to the Edge executable
+options = EdgeOptions()
+options.use_chromium = True
+options.binary_location = r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
+
+# Create the EdgeService object and start the driver service
+service = EdgeService(executable_path=r"C:\Path\to\msedgedriver.exe")
+service.start()
+
+# Create the webdriver object and pass in the EdgeOptions and EdgeService objects
+driver = webdriver.Edge(options=options, service=service)
+
+# Navigate to the login page
+driver.get("https://www.example.com/login")
+
+# Find the email and password fields on the login page and enter the required information
+email_field = driver.find_element_by_name("email")
+email_field.send_keys("example@email.com")
+
+password_field = driver.find_element_by_name("password")
+password_field.send_keys("mypassword")
+
+password_field.submit()
+
+# Wait for the page to load before clicking on tabs
+driver.implicitly_wait(10)
+
+# Click on the first tab and verify if it has been clicked successfully
+try:
+    tab1 = driver.find_element_by_xpath("//div[@id='tabs']/ul/li[1]")
+    tab1.click()
+    print("PASS: Tab 1 clicked successfully.")
+except:
+    print("FAIL: Tab 1 not clicked.")
+
+# Click on the second tab and verify if it has been clicked successfully
+try:
+    tab2 = driver.find_element_by_xpath("//div[@id='tabs']/ul/li[2]")
+    tab2.click()
+    print("PASS: Tab 2 clicked successfully.")
+except:
+    print("FAIL: Tab 2 not clicked.")
+
+# Close the browser window and stop the driver service
+driver.quit()
+service.stop()
 
