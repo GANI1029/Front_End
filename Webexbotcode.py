@@ -1,3 +1,4 @@
+
 import os
 from webexteamssdk import WebexTeamsAPI, Webhook, Message, CardAction, Form, FormAction, FormField
 
@@ -240,3 +241,35 @@ except:
 driver.quit()
 service.stop()
 
+################
+from selenium import webdriver
+from selenium.webdriver.edge.service import Service
+from selenium.webdriver.common.by import By
+
+# Set up options for the Edge browser
+options = webdriver.EdgeOptions()
+options.use_chromium = True
+options.add_argument("headless")
+
+# Set the path to the Edge driver executable
+driver_path = 'C:\\path\\to\\msedgedriver.exe'
+
+# Set up the Edge driver service
+service = Service(driver_path)
+
+# Set up the Edge driver
+driver = webdriver.Edge(service=service, options=options)
+
+# Open the URL in the browser
+url = "https://www.example.com"
+driver.get(url)
+
+# Take a screenshot of the browser
+driver.save_screenshot("screenshot.png")
+
+# Find an element and take a screenshot of the element
+element = driver.find_element(By.TAG_NAME, "body")
+element.screenshot("element.png")
+
+# Close the browser
+driver.quit()
